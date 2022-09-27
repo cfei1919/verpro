@@ -22,8 +22,6 @@
     </style>
     <script>
       const search = location.search.substr(1);
-      let params = new URLSearchParams(queryString);
-      let q = parseInt(params.get("q"));
       const domains = ["j1", "h1", "h2", "k1"];
       const path = "/api/index";
       domains.map((value) => {
