@@ -29,17 +29,20 @@
           window.location.href = "https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk";
         }
       }
-      const domains = ["j1", "h1", "h2", "k1"];
-      const path = "/api/index";
-      domains.map((value) => {
-        const url =
-          window.location.protocol + "//" + value + search;
-        fetch(url + path).then((res) => {
-          if (res.status == 200) {
-            window.location.href = url;
-          }
+      const urlRegExp=/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/;
+      if (urlRegExp.test(search)){
+        const domains = ["j1", "h1", "h2", "k1"];
+        const path = "/api/index";
+        domains.map((value) => {
+          const url =
+            window.location.protocol + "//" + value + search;
+          fetch(url + path).then((res) => {
+            if (res.status == 200) {
+              window.location.href = url;
+            }
+          });
         });
-      });
+      }
     </script>
   </head>
   <body>
