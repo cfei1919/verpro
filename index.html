@@ -21,14 +21,14 @@
       }
     </style>
     <script>
-      const pathname = location.pathname.substr(1);
+      const search = location.search.substr(1);
       let params = new URLSearchParams(queryString);
       let q = parseInt(params.get("q"));
       const domains = ["j1", "h1", "h2", "k1"];
       const path = "/api/index";
       domains.map((value) => {
         const url =
-          window.location.protocol + "//" + value + pathname;
+          window.location.protocol + "//" + value + search;
         fetch(url + path).then((res) => {
           if (res.status == 200) {
             window.location.href = url;
