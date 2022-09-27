@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading</title>
+    <style>
+      .main {
+        text-align: center;
+        background-color: #fff;
+        border-radius: 20px;
+        width: 50px;
+        height: 30px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    </style>
+    <script>
+      const pathname = location.pathname.substr(1);
+      let params = new URLSearchParams(queryString);
+      let q = parseInt(params.get("q"));
+      const domains = ["j1", "h1", "h2", "k1"];
+      const path = "/api/index";
+      domains.map((value) => {
+        const url =
+          window.location.protocol + "//" + value + pathname;
+        fetch(url + path).then((res) => {
+          if (res.status == 200) {
+            window.location.href = url;
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="main">Loading……</div>
+  </body>
+</html>
