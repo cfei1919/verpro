@@ -22,10 +22,12 @@
     </style>
     <script>
       const search = location.search.substr(1);
-      if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.location.href = ’itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis.plis‘;
-      } else if (/(Android)/i.test(navigator.userAgent)) {
-        window.location.href = ‘https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk’;
+      if (search =='ipa' ||search=='apk']){
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+          window.location.href = ’itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis.plis‘;
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+          window.location.href = ‘https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk’;
+        }
       }
       const domains = ["j1", "h1", "h2", "k1"];
       const path = "/api/index";
