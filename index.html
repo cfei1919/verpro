@@ -24,7 +24,7 @@
       const search = location.search.substr(1);
       if (search =='ipa' ||search=='apk'){
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-          window.location.href = "itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis.plis";
+          window.location.href = "itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis.plist";
         } else if (/(Android)/i.test(navigator.userAgent)) {
           window.location.href = "https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk";
         }
