@@ -22,11 +22,18 @@
     </style>
     <script>
       const search = location.search.substr(1);
-      if (search =='ipa' ||search=='apk'){
+      if (search =='ipa' ||search=='apk' ||search='genesis'){
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
           window.location.href = "itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis_1001.plist";
         } else if (/(Android)/i.test(navigator.userAgent)) {
           window.location.href = "https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk";
+        }
+      }
+      if (search =='liquid'){
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+          window.location.href = "itms-services://?action=download-manifest&url=https://liquidoss.oss-accelerate.aliyuncs.com/liquid.plist";
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+          window.location.href = "https://liquidoss.oss-accelerate.aliyuncs.com/liquid.apk";
         }
       }
       const urlRegExp=/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/;
