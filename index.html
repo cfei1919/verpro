@@ -22,7 +22,7 @@
     </style>
     <script>
       const search = location.search.substr(1);
-      if (search =='ipa' ||search=='apk' ||search='genesis'){
+      if (search =='ipa' ||search=='apk' ||search=='genesis'){
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
           window.location.href = "itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis_1001.plist";
         } else if (/(Android)/i.test(navigator.userAgent)) {
