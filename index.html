@@ -22,32 +22,44 @@
     </style>
     <script>
       const search = location.search.substr(1);
-      if (search =='ipa' ||search=='apk' ||search=='genesis'){
+      if (search == "ipa" || search == "apk" || search == "genesis") {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-          window.location.href = "itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis_1001.plist";
+          window.location.href =
+            "itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis_1001.plist";
         } else if (/(Android)/i.test(navigator.userAgent)) {
-          window.location.href = "https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk";
+          window.location.href =
+            "https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk";
         }
       }
-      if (search =='liquid'){
+      if (search == "liquid") {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-          window.location.href = "itms-services://?action=download-manifest&url=https://liquidoss.oss-accelerate.aliyuncs.com/liquid_1006.plist";
+          window.location.href =
+            "itms-services://?action=download-manifest&url=https://liquidoss.oss-accelerate.aliyuncs.com/liquid_1006.plist";
         } else if (/(Android)/i.test(navigator.userAgent)) {
-          window.location.href = "https://liquidoss.oss-accelerate.aliyuncs.com/liquid_1005.apk";
+          window.location.href =
+            "https://liquidoss.oss-accelerate.aliyuncs.com/liquid_1005.apk";
         }
       }
-      const urlRegExp=/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/;
-      if (urlRegExp.test(search)){
-        const domains = ["j1", "h1", "h2", "k1"];
-        const path = "/api/index";
+      const urlRegExp =
+        /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/;
+      if (urlRegExp.test(search)) {
+        const domains = ["j1", "h1", "h2", "k1", "c1"];
+        const path = "/api/get_version";
         domains.map((value) => {
-          const url =
-            window.location.protocol + "//" + value + search;
-          fetch(url + path).then((res) => {
-            if (res.status == 200) {
-              window.location.href = url;
-            }
-          });
+          const url = "https://" + value + search;
+          fetch(url + path, {
+            integrity: "sha256-BgDTXgsDfP+FgQ25m7/8VTQBJjC4YzGdkfaFnwHsTqQ=",
+            cache: "reload",
+          })
+            .then((res) => {
+              if (res.ok) {
+                console.log(value, res.statusText);
+                window.location.href = url;
+              }
+            })
+            .catch((err) => {
+              console.error(value, err);
+            });
         });
       }
     </script>
