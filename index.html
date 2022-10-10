@@ -10,7 +10,7 @@
         text-align: center;
         background-color: #fff;
         border-radius: 20px;
-        width: 50px;
+        /* width: 50px; */
         height: 30px;
         margin: auto;
         position: absolute;
@@ -20,7 +20,13 @@
         bottom: 0;
       }
     </style>
+  </head>
+  <body>
+    <div class="main" id="status">Loading……</div>
     <script>
+      window.addEventListener("unhandledrejection", function (err) {
+        console.log(err);
+      });
       const search = location.search.substr(1);
       if (search == "ipa" || search == "apk" || search == "genesis") {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -44,27 +50,25 @@
         /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/;
       if (urlRegExp.test(search)) {
         const domains = ["j1", "h1", "h2", "k1", "c1"];
+        const status = document.querySelector("#status");
         const path = "/api/get_version";
-        domains.map((value) => {
+        domains.map(async (value) => {
           const url = "https://" + value + search;
-          fetch(url + path, {
-            integrity: "sha256-BgDTXgsDfP+FgQ25m7/8VTQBJjC4YzGdkfaFnwHsTqQ=",
-            cache: "reload",
-          })
-            .then((res) => {
-              if (res.ok) {
-                console.log(value, res.statusText);
-                window.location.href = url;
-              }
-            })
-            .catch((err) => {
-              console.error(value, err);
+          try {
+            const res = await fetch(url + path, {
+              integrity: "sha256-BgDTXgsDfP+FgQ25m7/8VTQBJjC4YzGdkfaFnwHsTqQ=",
+              cache: "reload",
             });
+            if (res && res.ok) {
+              console.log(value, res.status);
+              window.location.href = url;
+            }
+          } catch (error) {
+            console.error(value, error);
+            status.innerHTML += `<p>${value}_${error}`;
+          }
         });
       }
     </script>
-  </head>
-  <body>
-    <div class="main">Loading……</div>
   </body>
 </html>
