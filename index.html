@@ -28,15 +28,6 @@
         console.log(err);
       });
       const search = location.search.substr(1);
-      if (search == "ipa" || search == "apk" || search == "genesis") {
-        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-          window.location.href =
-            "itms-services://?action=download-manifest&url=https://genenis.oss-accelerate.aliyuncs.com/Genesis_1001.plist";
-        } else if (/(Android)/i.test(navigator.userAgent)) {
-          window.location.href =
-            "https://genenis.oss-accelerate.aliyuncs.com/Genesis.apk";
-        }
-      }
       if (search == "liquid") {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
           window.location.href =
@@ -45,10 +36,6 @@
           window.location.href =
             "https://liquidoss.oss-accelerate.aliyuncs.com/liquid_1005.apk";
         }
-      }
-      if (search == "chat") {
-          window.location.href =
-            "https://chatlink.mstatik.com/widget/standalone.html?eid=413a2814cd7c22717a6c7978df2e65c6";
       }
       const urlRegExp =
         /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/;
